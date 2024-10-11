@@ -20,7 +20,7 @@ def get_mint_transactions(token_name, mint, limit=100, before=None):
         while True:
             mint_address = Pubkey.from_string(mint)
             new_signatures = client.get_signatures_for_address(
-                mint_address, before=before).value
+                mint_address, limit=limit, before=before).value
             if not new_signatures:
                 break
             signatures.extend(new_signatures)
@@ -94,7 +94,7 @@ if __name__ == "__main__":
             token_data['before_hash']) if token_data['before_hash'] else None
 
         transactions, new_before_hash = get_mint_transactions(
-            token_name, mint, 10, before_hash)
+            token_name, mint, 1000, before_hash)
 
         mint_data[token_name]['before_hash'] = new_before_hash
 
