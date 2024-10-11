@@ -10,10 +10,6 @@ load_dotenv()
 
 
 client = Client(os.getenv("HTTP_NODE_URL"))
-
-with open('config.json', 'r') as f:
-    mint_data = json.load(f)
-
 min_percentage = 70
 
 
@@ -39,6 +35,8 @@ def get_mint_transactions(token_name, mint, limit=100, before=None):
 
 def check_transaction_for_swap(signature):
     try:
+        if type(signature) == str:
+            signature = Signature.from_string(signature)
         tx_info = client.get_transaction(
             signature,
             max_supported_transaction_version=1,
@@ -85,27 +83,31 @@ def find_common_wallets(wallets_by_token, min_percentage):
     return common_wallets
 
 
-wallets_by_token = {}
+if __name__ == "__main__":    
+    with open('config.json', 'r') as f:
+        mint_data = json.load(f)
+    wallets_by_token = {}
 
-for token_name, token_data in mint_data.items():
-    mint = token_data['mint']
-    before_hash = Signature.from_string(token_data['before_hash']) if token_data['before_hash'] else None
+    for token_name, token_data in mint_data.items():
+        mint = token_data['mint']
+        before_hash = Signature.from_string(
+            token_data['before_hash']) if token_data['before_hash'] else None
 
-    transactions, new_before_hash = get_mint_transactions(
-        token_name, mint, 10, before_hash)
+        transactions, new_before_hash = get_mint_transactions(
+            token_name, mint, 10, before_hash)
 
-    mint_data[token_name]['before_hash'] = new_before_hash
+        mint_data[token_name]['before_hash'] = new_before_hash
 
-    wallets = parse_transactions(token_name, transactions)
-    wallets_by_token[token_name] = wallets
+        wallets = parse_transactions(token_name, transactions)
+        wallets_by_token[token_name] = wallets
 
-common_wallets = find_common_wallets(wallets_by_token, min_percentage)
+    common_wallets = find_common_wallets(wallets_by_token, min_percentage)
 
-if common_wallets:
-    with open('result.json', 'w') as f:
-        json.dump(common_wallets, f, indent=4)
-    print(
-        f"Wallets count (appearing in at least {min_percentage}% of tokens): {len(common_wallets)}")
-else:
-    print(
-        f"No wallets found that appear in at least {min_percentage}% of tokens.")
+    if common_wallets:
+        with open('result.json', 'w') as f:
+            json.dump(common_wallets, f, indent=4)
+        print(
+            f"Wallets count (appearing in at least {min_percentage}% of tokens): {len(common_wallets)}")
+    else:
+        print(
+            f"No wallets found that appear in at least {min_percentage}% of tokens.")
