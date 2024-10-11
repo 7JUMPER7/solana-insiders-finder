@@ -1,14 +1,14 @@
 {
-  "an/gel": {
-    "mint": "G4LJcPktZLrgsxu8VSJiBvm2mUVkYvPWzTHSAQ1spump",
-    "before_hash": null
-  },
-  "CYPHERPUNK": {
-    "mint": "GmdHxRhSesQtkufaf2ts7bX3qnrkvbrxVpUfHTc9pump",
-    "before_hash": null
-  },
-  "FBI": {
-    "mint": "GERwg4MV4kca5RhBvmkNAvnmYdpSKPamngqSahgUDhyA",
-    "before_hash": null
-  }
+    "Walking": {
+        "mint": "E5c98SdBGad2TVpkSZ7Lct1RqtVU4bErpdX31GZDpump",
+        "before_hash": "37wbGRd3MJrKqbL7T8cg467LNk7A8BBvUsnLPuveETy59hGpToGmSZb53cHaVm1Z2xYLcvuiJ9wxEirQjewwAnby"
+    },
+    "DURON": {
+        "mint": "HfeuYxntY39aVan1uMgK65rM31JCfStsv8YE8hT84i36",
+        "before_hash": "ZAnk2mtg8PKHg4iL9aApt26ppHcstyhYGD7RKWBTVFZvpuhQ3BTuWbw7vCWrL9qmUcrXeRxXM7KPjAFC6ARmatR"
+    },
+    "seto": {
+        "mint": "8Ajd4DU28TW5efqw2CDgHmF4TK9zbkj22KNPxx2upump",
+        "before_hash": "f6NPYBw4am68zrpQ3YkRJdJgmFV2zBCx21U4y8VoUaZy23h4nmA1GaS5kc65uX8iGGbNH8caPhy14jLwaDoB3M9"
+    }
 }

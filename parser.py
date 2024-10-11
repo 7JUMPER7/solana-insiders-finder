@@ -1,16 +1,21 @@
-import requests
-import json
-from solana.rpc.api import Client
 from solders.pubkey import Pubkey
+from solders.signature import Signature
+from solana.rpc.api import Client
+import json
+import math
+import os
+from dotenv import load_dotenv
 
-client = Client(
-    "https://mainnet.helius-rpc.com/?api-key=87f91e12-46ac-4c12-8442-998e8f0e8cb9"
-)
+load_dotenv()
+
+
+client = Client(os.getenv("HTTP_NODE_URL"))
 
 with open('config.json', 'r') as f:
     mint_data = json.load(f)
 
-min_percentage = 70 
+min_percentage = 60
+
 
 def get_mint_transactions(token_name, mint, limit=100, before=None):
     TOTAL_LIMIT = 100
@@ -23,6 +28,7 @@ def get_mint_transactions(token_name, mint, limit=100, before=None):
             if not new_signatures:
                 break
             signatures.extend(new_signatures)
+            print("New signatures len:", len(new_signatures), "for:", mint)
             before = new_signatures[-1].signature
             if len(signatures) >= TOTAL_LIMIT:
                 break
@@ -60,12 +66,12 @@ def parse_transactions(token_name, transactions):
 
 def find_common_wallets(wallets_by_token, min_percentage):
     total_tokens = len(wallets_by_token)
-    min_token_count = round((min_percentage / 100) * total_tokens)
+    min_token_count = math.ceil((min_percentage / 100) * total_tokens)
 
     wallet_count = {}
 
     for token_name, wallets in wallets_by_token.items():
-        for wallet in set(wallets):  
+        for wallet in set(wallets):
             if wallet not in wallet_count:
                 wallet_count[wallet] = {'count': 0, 'tokens': []}
             wallet_count[wallet]['count'] += 1
@@ -83,12 +89,13 @@ wallets_by_token = {}
 
 for token_name, token_data in mint_data.items():
     mint = token_data['mint']
-    before_hash = token_data['before_hash'] 
-    
-    transactions, new_before_hash = get_mint_transactions(token_name, mint, 10, before_hash)
-    
+    before_hash = Signature.from_string(token_data['before_hash']) if token_data['before_hash'] else None
+
+    transactions, new_before_hash = get_mint_transactions(
+        token_name, mint, 10, before_hash)
+
     mint_data[token_name]['before_hash'] = new_before_hash
-    
+
     wallets = parse_transactions(token_name, transactions)
     wallets_by_token[token_name] = wallets
 
@@ -97,6 +104,8 @@ common_wallets = find_common_wallets(wallets_by_token, min_percentage)
 if common_wallets:
     with open('result.json', 'w') as f:
         json.dump(common_wallets, f, indent=4)
-    print(f"Wallets (appearing in at least {min_percentage}% of tokens): {common_wallets}")
+    print(
+        f"Wallets count (appearing in at least {min_percentage}% of tokens): {len(common_wallets)}")
 else:
-    print(f"No wallets found that appear in at least {min_percentage}% of tokens.")
+    print(
+        f"No wallets found that appear in at least {min_percentage}% of tokens.")

@@ -1,0 +1,2 @@
+python-dotenv==1.0.0
+solana==0.32.0
