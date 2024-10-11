@@ -14,17 +14,17 @@ client = Client(os.getenv("HTTP_NODE_URL"))
 with open('config.json', 'r') as f:
     mint_data = json.load(f)
 
-min_percentage = 60
+min_percentage = 70
 
 
 def get_mint_transactions(token_name, mint, limit=100, before=None):
-    TOTAL_LIMIT = 100
+    TOTAL_LIMIT = 10000
     signatures = []
     try:
         while True:
             mint_address = Pubkey.from_string(mint)
             new_signatures = client.get_signatures_for_address(
-                mint_address, limit=limit, before=before).value
+                mint_address, before=before).value
             if not new_signatures:
                 break
             signatures.extend(new_signatures)
