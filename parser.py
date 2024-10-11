@@ -94,7 +94,7 @@ if __name__ == "__main__":
             token_data['before_hash']) if token_data['before_hash'] else None
 
         transactions, new_before_hash = get_mint_transactions(
-            token_name, mint, 1000, before_hash)
+            token_name, mint, limit=1000, before=before_hash)
 
         mint_data[token_name]['before_hash'] = new_before_hash
 
