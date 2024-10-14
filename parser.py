@@ -14,7 +14,7 @@ min_percentage = 70
 
 
 def get_mint_transactions(token_name, mint, limit=100, before=None):
-    TOTAL_LIMIT = 10000
+    TOTAL_LIMIT = 300000
     signatures = []
     try:
         while True:
@@ -24,7 +24,8 @@ def get_mint_transactions(token_name, mint, limit=100, before=None):
             if not new_signatures:
                 break
             signatures.extend(new_signatures)
-            print("New signatures len:", len(new_signatures), "for:", mint)
+            print("New signatures len:", len(
+                new_signatures), "for:", token_name)
             before = new_signatures[-1].signature
             if len(signatures) >= TOTAL_LIMIT:
                 break
@@ -83,7 +84,10 @@ def find_common_wallets(wallets_by_token, min_percentage):
     return common_wallets
 
 
-if __name__ == "__main__":    
+if __name__ == "__main__":
+    # result = check_transaction_for_swap("32ffe61RVuH9ziqBkxuec8uGFDfD52fhFzpg44ZtUoq9CpkLPCLdEgdQAi4ubgNf8cdhLgAB97abC5PkHMVDGB14")
+    # print(result)
+    
     with open('config.json', 'r') as f:
         mint_data = json.load(f)
     wallets_by_token = {}
