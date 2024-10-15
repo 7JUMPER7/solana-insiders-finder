@@ -10,7 +10,7 @@ load_dotenv()
 
 
 client = Client(os.getenv("HTTP_NODE_URL"))
-min_percentage = 70
+min_percentage = 80
 
 
 def get_mint_transactions(token_name, mint, limit=100, before=None):
