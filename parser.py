@@ -1,3 +1,4 @@
+import time
 from solders.pubkey import Pubkey
 from solders.signature import Signature
 from solana.rpc.api import Client
@@ -58,6 +59,7 @@ def parse_transactions(token_name, transactions):
             if address:
                 wallet_string = str(address)
                 wallets.append(wallet_string)
+            time.sleep(0.2)
         return wallets
     except Exception as e:
         print(f"Error parsing for token {token_name}: {e}")
