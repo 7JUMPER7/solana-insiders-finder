@@ -14,7 +14,7 @@ client = Client(os.getenv("HTTP_NODE_URL"))
 min_percentage = 80
 
 
-def get_mint_transactions(token_name, mint, limit=100, before=None):
+def get_mint_transactions(token_name, mint, limit=100, before=None, after=None):
     TOTAL_LIMIT = 300000
     signatures = []
     try:
@@ -24,7 +24,14 @@ def get_mint_transactions(token_name, mint, limit=100, before=None):
                 mint_address, limit=limit, before=before).value
             if not new_signatures:
                 break
-            signatures.extend(new_signatures)
+
+            for signature in new_signatures:
+                if after and signature.signature == after:
+                    print(f"Reached after_hash for token {token_name}, stopping.")
+                    return signatures, before
+                
+                signatures.append(signature)
+
             print("New signatures len:", len(
                 new_signatures), "for:", token_name)
             before = new_signatures[-1].signature
@@ -98,9 +105,11 @@ if __name__ == "__main__":
         mint = token_data['mint']
         before_hash = Signature.from_string(
             token_data['before_hash']) if token_data['before_hash'] else None
+        after_hash = Signature.from_string(
+            token_data['after_hash']) if token_data['after_hash'] else None
 
         transactions, new_before_hash = get_mint_transactions(
-            token_name, mint, limit=1000, before=before_hash)
+            token_name, mint, limit=1000, before=before_hash, after=after_hash)
 
         mint_data[token_name]['before_hash'] = new_before_hash
 

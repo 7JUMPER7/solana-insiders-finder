@@ -1,30 +1,12 @@
 {
-    "Murade": {
-        "mint": "AnLV6URRUi6gSaRunA141ZuBySuNMTvaWpSXbgLXpump",
-        "before_hash": "677vdaFCiB24NcP4WsH9gRrC5cNkGZ2qeNcP76uwtXW1WPcAb666jniL7HHQATfK7fcL8XskYYrs53vQNS9LbgwL"
+    "HASBULL": {
+        "mint": "9ywnj3fxk7ry5yvvzw5peefjyiuh683u9r92efbwcnqf",
+        "before_hash": "478pyqpJzVBB6CFSut1FZR5cv3hHx9dYq2nxEukwkTpPHG8Nay5oNqV3eDNQx48Yx5xN7dU7FzbywbhSiPDy9UNt",
+        "after_hash": "4MtpKKGhTx2MrHnyKz7RJSqK2DB7w1HW2eRwDLAqyZDmZWjERMuEhssZajbsybppAnLkdYPJHqgtGBZ8hsaRDDXK"
     },
-    "Hachi": {
-        "mint": "4amstKcbziHCqwev9esMtRGDTdjHSviiNXT7WtajgjUq",
-        "before_hash": "3dwnvZ2KBh3GtnrrvbG3iZ1HDrLzPhJkfGjJUavCvhgEXJydZvzvAzWxBZ2hSAC4rM7NVSpfMwJXUd8tCxcb9JU8"
-    },
-    "boy": {
-        "mint": "GmEXg8FwpULzVb15r41CNB5qFnRcXCrEyZSmD3X7sv2e",
-        "before_hash": "4D3Fjusxpp1M9fPTgKKoeu32cwWKg99CxUPBM5jdZ56SE9fpwKKbk8RkV45j34xN3u6t6VLqkJjANJUtXxbAcra"
-    },
-    "MeowMeow": {
-        "mint": "HeCFQ5hiDZRKVYEuDF1LYBfbYfqAg98CQtbrTR7ipump",
-        "before_hash": "48VauYrapP3ASZdfeuoy9ZiG3kL6Kdq6jLds7ADMPN2YaybTfMB5ZnoiCKAfJfojXewpT5TwD6s8Po1ixAbG6fm7"
-    },
-    "Soliloque": {
-        "mint": "DPfhZt2wjTYTsA3JjNEJCDyX3Rn1ef8sbje6AMGDpump",
-        "before_hash": "2ZvA2egfDBJAURTWrHWtS7MDb7Hh48dixxcwWdijE4RExt8Kx7HxB1o9VNAxWPSdgKVXxvdZmcyqGQ2absqH65Py"
-    },
-    "Scat": {
-        "mint": "scatYPdryopAPpriuyn5a4UyPSD9weFP4KCKq9Ykskp",
-        "before_hash": "5EHTKRcZBiZ2JTHP9Qkg4ofjk16W7cvzsEchr4URPErA27JTJv2821w8NXwmAusAEFsQV8AmATD9ffiKsVXKbHRi"
-    },
-    "Milton": {
-        "mint": "4VcY33JzwRihjAMqMaBkc9Zx1tZarozmqcm8H21Gpump",
-        "before_hash": "4xfFwJGu4XzZ9jiuQBURn3KgHviK8YVwuw9ZppuvUAKRFGXgtj7TFzJU3wARbKBBwtT9Z5s9TnzuiT8zWHYGZ4ND"
+    "moar": {
+        "mint": "AWcq8cy2gYhfgmiV1RowHiaP8ohAU1d4A2AL5Zm9pump",
+        "before_hash": "4r2Y1UnNdrV76KZdGzhhpmpBDR2VvJWg4Tmfbbn1kZZQKSpWeppxWwHn9M7287C1jvyy6ksMH2K3KvaFzFnWFVks",
+        "after_hash": "4GXFV2qFNfCMALyT4skCxBuVEbxLkx65as4gXqLoPqSwskg6NLtHzJueprU5hkfYNxZMwTTg3zSVr2QKL8CiVcqp"
     }
 }
